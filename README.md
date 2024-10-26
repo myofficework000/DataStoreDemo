@@ -7,6 +7,7 @@ This project is a demonstration of implementing Android Jetpack's DataStore for 
 - Sort the task by Priority
 - Sort the task by Deadline
 - Change the app theme
+- Show compelted and pending tasks
 - delete task [Upcoming]
 - delete all task [upcoming]
 
