@@ -6,6 +6,7 @@ import androidx.datastore.preferences.preferencesDataStore
 import com.code4galaxy.datastore.data.TaskRepositoryImpl
 import com.code4galaxy.datastore.data.UserPreferencesRepositoryImpl
 import com.code4galaxy.datastore.domain.usecase.ChangeShowCompleted
+import com.code4galaxy.datastore.domain.usecase.ChangeShowPending
 import com.code4galaxy.datastore.domain.usecase.ChangeTheme
 import com.code4galaxy.datastore.domain.usecase.EnableSortByDeadline
 import com.code4galaxy.datastore.domain.usecase.EnableSortByPriority
@@ -28,6 +29,7 @@ object Locator {
             filterSortTasks = filterSortTasks,
             getTheme = getTheme,
             changeShowCompleted = changeShowCompleted,
+            changeShowPending = changeShowPending,
             enableSortByDeadline = enableSortByDeadline,
             enableSortByPriority = enableSortByPriority,
             changeTheme = changeTheme,
@@ -44,6 +46,8 @@ object Locator {
     private val getTheme get() = GetTheme(userPreferencesRepository)
 
     private val changeShowCompleted get() = ChangeShowCompleted(userPreferencesRepository)
+
+    private val changeShowPending get() = ChangeShowPending(userPreferencesRepository)
 
     private val enableSortByDeadline get() = EnableSortByDeadline(userPreferencesRepository)
 

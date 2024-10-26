@@ -24,12 +24,16 @@ class UserPreferencesRepositoryImpl(
 
     private object Keys {
         val showCompleted = booleanPreferencesKey("show_completed")
+        val showPending = booleanPreferencesKey("show_pending")
         val sortOrder = stringPreferencesKey("sort_order")
         val theme = booleanPreferencesKey("theme")
     }
 
     private inline val Preferences.showCompleted
         get() = this[Keys.showCompleted] ?: false
+
+    private inline val Preferences.showPending
+        get() = this[Keys.showPending] ?: false
 
     private inline val Preferences.sortOrder
         get() = this[Keys.sortOrder]?.let(SortOrder::valueOf) ?: NONE
@@ -46,6 +50,7 @@ class UserPreferencesRepositoryImpl(
         .map { preferences ->
             UserPreferences(
                 showCompleted = preferences.showCompleted,
+                showPending = preferences.showPending,
                 sortOrder = preferences.sortOrder,
             )
         }
@@ -102,6 +107,11 @@ class UserPreferencesRepositoryImpl(
     override suspend fun updateShowCompleted(showCompleted: Boolean) {
         dataStore.edit { it[Keys.showCompleted] = showCompleted }
         Log.d("UserPreferencesRepo", "updateShowCompleted $showCompleted")
+    }
+
+    override suspend fun updateShowPending(showPending: Boolean){
+        dataStore.edit { it[Keys.showPending] = showPending }
+        Log.d("UserPreferencesRepo", "updateShowPending $showPending")
     }
 
     override val theme: Flow<Theme> = dataStore.data

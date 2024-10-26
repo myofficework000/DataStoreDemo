@@ -12,6 +12,7 @@ import com.code4galaxy.datastore.domain.usecase.GetTheme
 import com.code4galaxy.datastore.domain.usecase.FilterSortTasks
 import com.code4galaxy.datastore.domain.usecase.FilteredSortedTasks
 import com.code4galaxy.datastore.domain.model.Theme
+import com.code4galaxy.datastore.domain.usecase.ChangeShowPending
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.stateIn
@@ -21,6 +22,7 @@ class MainViewModel(
     filterSortTasks: FilterSortTasks,
     getTheme: GetTheme,
     private val _changeShowCompleted: ChangeShowCompleted,
+    private val _changeShowPending: ChangeShowPending,
     private val _enableSortByDeadline: EnableSortByDeadline,
     private val _enableSortByPriority: EnableSortByPriority,
     private val _changeTheme: ChangeTheme,
@@ -51,6 +53,10 @@ class MainViewModel(
         viewModelScope.launch { _changeShowCompleted(showCompleted) }
     }
 
+    fun changeShowPending(showPending: Boolean){
+        viewModelScope.launch { _changeShowPending(showPending) }
+    }
+
     fun enableSortByDeadline(enabled: Boolean) {
         viewModelScope.launch { _enableSortByDeadline(enabled) }
     }
@@ -67,6 +73,7 @@ class MainViewModel(
         private val filterSortTasks: FilterSortTasks,
         private val getTheme: GetTheme,
         private val changeShowCompleted: ChangeShowCompleted,
+        private val changeShowPending: ChangeShowPending,
         private val enableSortByDeadline: EnableSortByDeadline,
         private val enableSortByPriority: EnableSortByPriority,
         private val changeTheme: ChangeTheme,
@@ -80,6 +87,7 @@ class MainViewModel(
                     filterSortTasks = filterSortTasks,
                     getTheme = getTheme,
                     _changeShowCompleted = changeShowCompleted,
+                    _changeShowPending = changeShowPending,
                     _enableSortByDeadline = enableSortByDeadline,
                     _enableSortByPriority = enableSortByPriority,
                     _changeTheme = changeTheme,

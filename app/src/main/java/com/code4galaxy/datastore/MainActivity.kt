@@ -39,6 +39,7 @@ class MainActivity : AppCompatActivity() {
                     MainScreen(
                         state = state,
                         changeShowCompleted = viewModel::changeShowCompleted,
+                        changeShowPending = viewModel::changeShowPending,
                         enableSortByDeadline = viewModel::enableSortByDeadline,
                         enableSortByPriority=viewModel::enableSortByPriority,
                         lightTheme = !darkTheme,

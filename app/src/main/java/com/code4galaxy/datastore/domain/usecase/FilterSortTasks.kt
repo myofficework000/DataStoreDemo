@@ -10,6 +10,7 @@ import kotlinx.coroutines.flow.combine
 data class FilteredSortedTasks(
     val tasks: List<Task>,
     val showCompleted: Boolean,
+    val showPending: Boolean,
     val sortOrder: SortOrder,
 )
 
@@ -21,12 +22,18 @@ class FilterSortTasks(
         return combine(
             taskRepository.tasks(),
             userPreferencesRepository.userPreferences,
-        ) { tasks, (showCompleted, sortOrder) ->
-            val filtered = if (showCompleted) tasks.filter { it.completed } else tasks
+        ) { tasks, (showCompleted, showPending, sortOrder) ->
+            val filtered = when {
+                showCompleted && showPending -> tasks
+                showCompleted -> tasks.filter { it.completed }
+                showPending -> tasks.filter { !it.completed }
+                else -> emptyList()
+            }
 
             FilteredSortedTasks(
                 tasks = filtered.sortedWith(sortOrder.comparator),
                 showCompleted = showCompleted,
+                showPending = showPending,
                 sortOrder = sortOrder
             )
         }

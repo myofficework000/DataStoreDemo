@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.requiredHeight
 import androidx.compose.foundation.layout.requiredWidth
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
@@ -63,6 +64,7 @@ import java.util.*
 fun MainScreen(
     state: FilteredSortedTasks?,
     changeShowCompleted: (Boolean) -> Unit,
+    changeShowPending: (Boolean) -> Unit,
     enableSortByDeadline: (Boolean) -> Unit,
     enableSortByPriority: (Boolean) -> Unit,
     lightTheme: Boolean,
@@ -136,11 +138,28 @@ fun MainScreen(
                         style = MaterialTheme.typography.bodySmall
                     )
 
-                    Spacer(modifier = Modifier.width(16.dp))
+                    Spacer(modifier = Modifier.width(4.dp))
 
                     Checkbox(
                         checked = state.showCompleted,
-                        onCheckedChange = changeShowCompleted
+                        onCheckedChange = changeShowCompleted,
+                        modifier = Modifier.size(16.dp)
+                    )
+
+                    Spacer(modifier = Modifier.width(20.dp))
+
+                    Text(
+                        modifier = Modifier.wrapContentWidth(),
+                        text = "Show pending tasks",
+                        style = MaterialTheme.typography.bodySmall
+                    )
+
+                    Spacer(modifier = Modifier.width(4.dp))
+
+                    Checkbox(
+                        checked = state.showPending,
+                        onCheckedChange = changeShowPending,
+                        modifier = Modifier.size(16.dp)
                     )
                 }
 

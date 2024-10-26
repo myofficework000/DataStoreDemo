@@ -13,6 +13,8 @@ interface UserPreferencesRepository {
 
     suspend fun updateShowCompleted(showCompleted: Boolean)
 
+    suspend fun updateShowPending(showPending: Boolean)
+
     suspend fun changeTheme(lightTheme: Boolean)
 
     val theme: Flow<Theme>
