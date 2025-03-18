@@ -1,4 +1,4 @@
-# DataStoreDemo
+# DataStore Demo
 
 This project is a demonstration of implementing Android Jetpack's DataStore for data management within a Jetpack Compose app. It follows a clean code architecture, providing a foundation for utilizing DataStore in real-world applications.
 
