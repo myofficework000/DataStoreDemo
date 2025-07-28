@@ -44,10 +44,10 @@ dataStore.edit { preferences ->
 }
 
 ## Technologies Used
-Kotlin for programming language.
-Jetpack Compose for UI.
-DataStore (Preferences and Proto) for data storage.
-Coroutines and Flow for async programming.
+- [Kotlin](https://kotlinlang.org/) for programming language.
+- [Jetpack Compose](https://developer.android.com/compose) for UI.
+- [DataStore](https://developer.android.com/topic/libraries/architecture/datastore) (Preferences and Proto) for data storage.
+- [Coroutines](https://developer.android.com/kotlin/coroutines) and Flow for async programming.
 
 ## Contributing
 Contributions are welcome! Feel free to submit a pull request with your improvements.
